@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<package >
+<package>
 	<metadata>
 		<id>RuskinDantra.Extensions</id>
 		<version>$version$</version>
@@ -18,6 +18,6 @@
 		</releaseNotes>
 	</metadata>
 	<files>
-		<file src="\bin\debug\RuskinDantra.Extensions.dll" target="lib\net452" />
+		<file src="\bin\release\RuskinDantra.Extensions.dll" target="lib\net452" />
 	</files>
 </package>
