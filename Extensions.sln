@@ -3,9 +3,14 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.24720.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Extensions", "Extensions\Extensions.csproj", "{C4F7DBF1-2750-416E-9FD8-084FE8EB3C2F}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "build", "build", "{78F16DD4-5507-454B-866E-C57D19188772}"
+	ProjectSection(SolutionItems) = preProject
+		appveyor.yml = appveyor.yml
+	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Extensions.UnitTests", "Extensions.UnitTests\Extensions.UnitTests.csproj", "{FFFAA7C8-57AC-45C7-A956-E5E8BD09A4A7}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RuskinDantra.Extensions", "RuskinDantra.Extensions\RuskinDantra.Extensions.csproj", "{C4F7DBF1-2750-416E-9FD8-084FE8EB3C2F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RuskinDantra.Extensions.UnitTests", "RuskinDantra.Extensions.UnitTests\RuskinDantra.Extensions.UnitTests.csproj", "{FFFAA7C8-57AC-45C7-A956-E5E8BD09A4A7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<package >
+	<metadata>
+		<id>$id$</id>
+		<version>$version$</version>
+		<title>$title$</title>
+		<authors>Ruskin Dantra</authors>
+		<owners>ruskindantra</owners>
+		<projectUrl>http://ruskindantra.github.io/extensions/</projectUrl>
+		<requireLicenseAcceptance>false</requireLicenseAcceptance>
+		<licenseUrl>https://github.com/ruskindantra/extensions/blob/master/LICENSE</licenseUrl>
+		<description>Some common extensions used by Ruskin Dantra during the course of his coding life</description>
+		<copyright>Copyright ©  2016 Ruskin Dantra</copyright>
+		<tags>CSharp extensions</tags>
+	</metadata>
+	<releaseNotes>
+		3-Jan-16
+			Added HasInterface extension method
+	</releaseNotes>
+	<files>
+		<file src="\bin\debug\RuskinDantra.Extensions.dll" target="lib\net452" />
+	</files>
+</package>

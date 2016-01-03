@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Extensions
+namespace RuskinDantra.Extensions
 {
     public static class TypeExtensions
     {

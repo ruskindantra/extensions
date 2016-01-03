@@ -1,7 +1,7 @@
 ﻿using FluentAssertions;
 using NUnit.Framework;
 
-namespace Extensions.UnitTests
+namespace RuskinDantra.Extensions.UnitTests
 {
 	[TestFixture]
     public class type_extensions
