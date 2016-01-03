@@ -7,11 +7,6 @@ assembly_info:
   assembly_file_version: '{version}'
   assembly_informational_version: '{version}'
 configuration: Release
-build:
-  verbosity: minimal
-  artifacts:
-   path: RuskinDantra.Extensions.nupkg
-  name: Nuget Package
 before_build: 
   - nuget restore Extensions.sln
 after_build:
