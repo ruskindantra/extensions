@@ -16,6 +16,9 @@
 			3-Jan-16
 				* Added HasInterface extension method
 		</releaseNotes>
+		<dependencies>
+			<dependency id="JetBrains.Annotations" version="10.0.0" />
+		</dependencies>
 	</metadata>
 	<files>
 		<file src="\bin\release\RuskinDantra.Extensions.dll" target="lib\net452" />
