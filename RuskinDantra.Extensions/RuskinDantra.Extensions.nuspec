@@ -3,7 +3,7 @@
 	<metadata>
 		<id>RuskinDantra.Extensions</id>
 		<version>$version$</version>
-		<title>$title$</title>
+		<title>Common extensions used by Ruskin Dantra</title>
 		<authors>Ruskin Dantra</authors>
 		<owners>ruskindantra</owners>
 		<projectUrl>http://ruskindantra.github.io/extensions/</projectUrl>
