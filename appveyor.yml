@@ -4,3 +4,11 @@ build:
   verbosity: minimal
 before_build: 
 - nuget restore Extensions.sln
+deploy:
+  provider: NuGet
+  #server:                  # remove to push to NuGet.org
+  api_key:
+    secure: 66ba4b02-08b6-4d68-b300-c25ef1114c82
+  skip_symbols: false
+  symbol_server:           # remove to push symbols to SymbolSource.org
+  artifact: /.*\.nupkg/
