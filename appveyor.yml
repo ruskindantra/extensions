@@ -1,9 +1,16 @@
 version: 1.0.{build}
 os: Visual Studio 2015
+configuration: Release
 build:
   verbosity: minimal
 before_build: 
-- nuget restore Extensions.sln
+	- nuget restore Extensions.sln
+
+# build NuGet package and upload it to artifacts
+after_build:
+	- nuget pack RuskinDantra.Extensions\RuskinDantra.Extensions.nuspec -Version %appveyor_build_version%
+	- appveyor PushArtifact RuskinDantra.Extensions.%appveyor_build_version%.nupkg
+
 deploy:
   provider: NuGet
   #server:                  # remove to push to NuGet.org
