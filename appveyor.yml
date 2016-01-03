@@ -10,7 +10,7 @@ configuration: Release
 build:
   verbosity: minimal
   artifacts:
-  - path: RuskinDantra.Extensions.nupkg
+   path: RuskinDantra.Extensions.nupkg
   name: Nuget Package
 before_build: 
   - nuget restore Extensions.sln
