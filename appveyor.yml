@@ -4,16 +4,12 @@ configuration: Release
 build:
   verbosity: minimal
 before_build: 
-- nuget restore Extensions.sln
-
-# build NuGet package and upload it to artifacts
+  - nuget restore Extensions.sln
 after_build:
-- nuget pack RuskinDantra.Extensions\RuskinDantra.Extensions.nuspec -Version %appveyor_build_version%
-- appveyor PushArtifact RuskinDantra.Extensions.%appveyor_build_version%.nupkg
-
+  - nuget pack RuskinDantra.Extensions\RuskinDantra.Extensions.nuspec -Version %appveyor_build_version%
+  - appveyor PushArtifact RuskinDantra.Extensions.%appveyor_build_version%.nupkg
 deploy:
   provider: NuGet
-  #server:                  # remove to push to NuGet.org
   api_key:
     secure: 66ba4b02-08b6-4d68-b300-c25ef1114c82
   skip_symbols: false
