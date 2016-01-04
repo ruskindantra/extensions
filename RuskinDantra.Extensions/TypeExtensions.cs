@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using JetBrains.Annotations;
 
 namespace RuskinDantra.Extensions
@@ -16,6 +17,17 @@ namespace RuskinDantra.Extensions
 			where TInterface : class
 		{
 			return type.GetInterface(typeof(TInterface).Name);
+		}
+
+		[NotNull]
+		public static IEnumerable<Type> GetBaseTypes([NotNull] this Type type)
+		{
+			do
+			{
+				yield return type.BaseType;
+
+				type = type.BaseType;
+			} while (type != typeof(object) && type != null);
 		}
 	}
 }
