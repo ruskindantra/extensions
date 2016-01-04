@@ -23,7 +23,7 @@ namespace RuskinDantra.Extensions
 			string exceptionMessage = message;
 
 			if (string.IsNullOrWhiteSpace(exceptionMessage))
-				exceptionMessage = string.Format("Item <{0}> cannot be null", typeof(T).FullName);
+				exceptionMessage = $"Item <{typeof (T).FullName}> cannot be null";
 
 			if (!obj.HasValue)
 				throw new NullReferenceException(exceptionMessage);
