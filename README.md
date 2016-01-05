@@ -3,4 +3,4 @@
 
 Library to allow developers to choose from a range of extensions to assist them in their everyday coding problems.
 
-Please refer to the [project website|(http://ruskindantra.github.io/extensions)] for more information.
+Please refer to the [project website](http://ruskindantra.github.io/extensions) for more information.
