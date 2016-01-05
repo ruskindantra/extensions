@@ -45,6 +45,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ByteExtensions.cs" />
+    <Compile Include="DataStructures\XmlSerializableInterfaceList.cs" />
     <Compile Include="ObjectExtensions.cs" />
     <Compile Include="TypeExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

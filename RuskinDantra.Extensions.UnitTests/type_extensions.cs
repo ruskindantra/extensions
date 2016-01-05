@@ -1,4 +1,6 @@
-﻿using System.Linq;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using FluentAssertions;
 using NUnit.Framework;
 
@@ -67,6 +69,52 @@ namespace RuskinDantra.Extensions.UnitTests
 			type.GetBaseTypes().Where(t => t != typeof(object)).Should().Contain(typeof(test_class_no_interface));
 			type.GetBaseTypes().Where(t => t != typeof(object)).Should().Contain(typeof(test_class_extends));
 		}
+
+		[Test]
+		public void all_implementors_should_return_all_type_which_implement_interface()
+		{
+			var allImplementors = typeof (itest_interface).AllImplementors();
+			allImplementors.Should().HaveCount(3);
+			allImplementors.Should().Contain(typeof (test_class));
+			allImplementors.Should().Contain(typeof(test_class2));
+			allImplementors.Should().Contain(typeof(test_class3));
+		}
+
+		[Test]
+		public void all_implementors_should_throw_if_called_against_a_non_interface()
+		{
+			Action allImplementorsAction = () => typeof(test_class).AllImplementors();
+			allImplementorsAction.ShouldThrow<InvalidOperationException>().WithMessage("Type has to be an interface");
+		}
+
+		[Test]
+		public void should_return_correct_type_definition_for_generic_list()
+		{
+			var list = new List<string>();
+			Type[] genericTypes = list.GetType().GenericTypeArguments;
+			genericTypes.Should().HaveCount(1);
+		}
+
+		[Test]
+		public void should_return_correct_type_definition_for_generic_class()
+		{
+			var genericClass = new generic_class<string>();
+			Type[] genericTypes = genericClass.GetType().GenericTypeArguments;
+			genericTypes.Should().HaveCount(1);
+		}
+
+		[Test]
+		public void should_return_null_type_definition_for_non_generic_class()
+		{
+			var str = "A";
+			Type[] genericTypes = str.GetType().GenericTypeArguments;
+			genericTypes.Should().HaveCount(0);
+		}
+	}
+
+	public class generic_class<T>
+	{
+		
 	}
 
 	public interface itest_interface
@@ -77,6 +125,16 @@ namespace RuskinDantra.Extensions.UnitTests
 	public class test_class : itest_interface
 	{
 		
+	}
+
+	public class test_class2 : itest_interface
+	{
+
+	}
+
+	public class test_class3 : test_class
+	{
+
 	}
 
 	public class test_class_no_interface
