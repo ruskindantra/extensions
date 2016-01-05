@@ -76,13 +76,13 @@ namespace RuskinDantra.Extensions.UnitTests
 		{
 			var xml = "<?xml version=\"1.0\" encoding=\"utf-16\"?>\r\n" +
 			          "<Changes>\r\n" +
-					  "  <Change AssemblyQualifiedName=\"RuskinDantra.Extensions.UnitTests.ChangeA, RuskinDantra.Extensions.UnitTests, Version = 1.0.0.0, Culture = neutral, PublicKeyToken = null\">\r\n" +
+					  "  <Change AssemblyQualifiedName=\"RuskinDantra.Extensions.UnitTests.ChangeA, RuskinDantra.Extensions.UnitTests\">\r\n" +
 			          "    <ChangeA xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\">\r\n" +
 			          "      <PropertyA>Change A</PropertyA>\r\n" +
 			          "      <ChangeType>ChangeA</ChangeType>\r\n" +
 			          "    </ChangeA>\r\n" +
 			          "  </Change>\r\n" +
-					  "  <Change AssemblyQualifiedName=\"RuskinDantra.Extensions.UnitTests.ChangeB, RuskinDantra.Extensions.UnitTests, Version = 1.0.0.0, Culture = neutral, PublicKeyToken = null\">\r\n" +
+					  "  <Change AssemblyQualifiedName=\"RuskinDantra.Extensions.UnitTests.ChangeB, RuskinDantra.Extensions.UnitTests\">\r\n" +
 			          "    <ChangeB xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\">\r\n" +
 			          "      <PropertyA>Change B</PropertyA>\r\n" +
 			          "      <ChangeType>ChangeB</ChangeType>\r\n" +
@@ -116,7 +116,7 @@ namespace RuskinDantra.Extensions.UnitTests
 			var changeA = changes.SingleOrDefault(
 				e =>
 					e.Attribute("AssemblyQualifiedName") != null &&
-					e.Attribute("AssemblyQualifiedName").Value == "RuskinDantra.Extensions.UnitTests.ChangeA, RuskinDantra.Extensions.UnitTests, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null");
+					e.Attribute("AssemblyQualifiedName").Value == "RuskinDantra.Extensions.UnitTests.ChangeA, RuskinDantra.Extensions.UnitTests");
 			changeA.Should().NotBeNull();
 			changeA.Element("ChangeA").Element("PropertyA").Should().HaveValue("Change A");
 			changeA.Element("ChangeA").Element("ChangeType").Should().HaveValue("ChangeA");
@@ -124,7 +124,7 @@ namespace RuskinDantra.Extensions.UnitTests
 			var changeB = changes.SingleOrDefault(
 				e =>
 					e.Attribute("AssemblyQualifiedName") != null &&
-					e.Attribute("AssemblyQualifiedName").Value == "RuskinDantra.Extensions.UnitTests.ChangeB, RuskinDantra.Extensions.UnitTests, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null");
+					e.Attribute("AssemblyQualifiedName").Value == "RuskinDantra.Extensions.UnitTests.ChangeB, RuskinDantra.Extensions.UnitTests");
 			changeB.Should().NotBeNull();
 			changeB.Element("ChangeB").Element("PropertyA").Should().HaveValue("Change B");
 			changeB.Element("ChangeB").Element("ChangeType").Should().HaveValue("ChangeB");
