@@ -1,11 +1,26 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using JetBrains.Annotations;
 
 namespace RuskinDantra.Extensions
 {
     public static class TypeExtensions
     {
+
+
+	    public static IEnumerable<Type> AllImplementors(this Type type)
+	    {
+		    if (!type.IsInterface)
+				throw new InvalidOperationException("Type has to be an interface");
+
+			return AppDomain.CurrentDomain
+				.GetAssemblies()
+				.SelectMany(s => s.GetTypes())
+				.Where(t => t != type)
+				.Where(type.IsAssignableFrom);
+		}
+
 		public static bool HasInterface<TInterface>([NotNull] this Type type)
 			where TInterface : class
 		{
