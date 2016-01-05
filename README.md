@@ -3,6 +3,4 @@
 
 Library to allow developers to choose from a range of extensions to assist them in their everyday coding problems.
 
-## Type Extensions
-**bool HasInterface<T>**
-Returns _True_ or _False_ depending on whether the type implements the given interface or not respectively.
+Please refer to the [project website|http://ruskindantra.github.io/extensions] for more information.
