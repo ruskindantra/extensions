@@ -56,7 +56,7 @@ namespace RuskinDantra.Extensions.DataStructures
 			foreach (var change in this)
 			{
 				writer.WriteStartElement(_itemName);
-				writer.WriteAttributeString(AssemblyQualifiedName, change.GetType().AssemblyQualifiedName);
+				writer.WriteAttributeString(AssemblyQualifiedName, change.GetType().FullName + ", " + change.GetType().Assembly.GetName().Name);
 				XmlSerializer xmlSerializer = new XmlSerializer(change.GetType());
 				xmlSerializer.Serialize(writer, change);
 				writer.WriteEndElement();
