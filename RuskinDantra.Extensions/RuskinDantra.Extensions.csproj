@@ -34,6 +34,17 @@
     <WarningLevel>4</WarningLevel>
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Framework)' == 'NET40' And '$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\$(Configuration)\$(Framework)\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
   <PropertyGroup Condition="'$(Framework)' == 'NET45' And '$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -88,6 +99,17 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Framework)' == 'NET40' And '$(Configuration)|$(Platform)' == 'Release|AnyCPU'">
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+	<PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\$(Configuration)\$(Framework)\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Framework)' == 'NET45' And '$(Configuration)|$(Platform)' == 'Release|AnyCPU'">
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
@@ -175,11 +197,12 @@
   </Target>
   -->
   <Target Name="AfterBuild">
-    <MSBuild Condition="'$(NET45RUN)' != 'True'" Projects="$(MSBuildProjectFile)" Properties="Framework=NET45;NET45RUN=True" RunEachTargetSeparately="true" />
-    <MSBuild Condition="'$(NET451RUN)' != 'True'" Projects="$(MSBuildProjectFile)" Properties="Framework=NET451;NET451RUN=True" RunEachTargetSeparately="true" />
-    <MSBuild Condition="'$(NET452RUN)' != 'True'" Projects="$(MSBuildProjectFile)" Properties="Framework=NET452;NET452RUN=True" RunEachTargetSeparately="true" />
-    <MSBuild Condition="'$(NET46RUN)' != 'True'" Projects="$(MSBuildProjectFile)" Properties="Framework=NET46;NET46RUN=True" RunEachTargetSeparately="true" />
-    <MSBuild Condition="'$(NET461RUN)' != 'True'" Projects="$(MSBuildProjectFile)" Properties="Framework=NET461;NET461RUN=True" RunEachTargetSeparately="true" />
+	<MSBuild Condition="'$(NET40RUN)' != 'True'" Projects="$(MSBuildProjectFile)" Properties="Framework=NET40;NET40RUN=True" RunEachTargetSeparately="true" Targets="Rebuild" />
+    <MSBuild Condition="'$(NET45RUN)' != 'True'" Projects="$(MSBuildProjectFile)" Properties="Framework=NET45;NET45RUN=True" RunEachTargetSeparately="true" Targets="Rebuild" />
+    <MSBuild Condition="'$(NET451RUN)' != 'True'" Projects="$(MSBuildProjectFile)" Properties="Framework=NET451;NET451RUN=True" RunEachTargetSeparately="true" Targets="Rebuild" />
+    <MSBuild Condition="'$(NET452RUN)' != 'True'" Projects="$(MSBuildProjectFile)" Properties="Framework=NET452;NET452RUN=True" RunEachTargetSeparately="true" Targets="Rebuild" />
+    <MSBuild Condition="'$(NET46RUN)' != 'True'" Projects="$(MSBuildProjectFile)" Properties="Framework=NET46;NET46RUN=True" RunEachTargetSeparately="true" Targets="Rebuild" />
+    <MSBuild Condition="'$(NET461RUN)' != 'True'" Projects="$(MSBuildProjectFile)" Properties="Framework=NET461;NET461RUN=True" RunEachTargetSeparately="true" Targets="Rebuild" />
   </Target>
   <!-- <Target Name="BUILD451" AfterTargets="AfterBuild">
 	<MSBuild Condition="'$(Framework)' != 'NET451'" Projects="$(MSBuildProjectFile)" Properties="Framework=NET451" RunEachTargetSeparately="true" />
