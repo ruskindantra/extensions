@@ -9,7 +9,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>RuskinDantra.Extensions.UnitTests</RootNamespace>
     <AssemblyName>RuskinDantra.Extensions.UnitTests</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
   </PropertyGroup>
@@ -60,6 +60,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="byte_extensions.cs" />
+    <Compile Include="enumerable_extensions.cs" />
     <Compile Include="object_extensions.cs" />
     <Compile Include="type_extensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -72,6 +73,9 @@
       <Project>{c4f7dbf1-2750-416e-9fd8-084fe8eb3c2f}</Project>
       <Name>RuskinDantra.Extensions</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
