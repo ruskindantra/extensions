@@ -62,6 +62,7 @@
     <Compile Include="byte_extensions.cs" />
     <Compile Include="enumerable_extensions.cs" />
     <Compile Include="object_extensions.cs" />
+    <Compile Include="string_extensions.cs" />
     <Compile Include="type_extensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

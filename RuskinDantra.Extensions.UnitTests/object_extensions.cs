@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Xml;
 using System.Xml.Linq;
 using System.Xml.Serialization;
 using FluentAssertions;
@@ -69,8 +70,39 @@ namespace RuskinDantra.Extensions.UnitTests
 		}
 	}
 
+	public class SimpleXmlClass
+	{
+		public string A { get; set; }
+	}
+
+	[TestFixture]
 	public class object_extensions
 	{
+		[Test]
+		public void should_serialize_without_namespace_information()
+		{
+			var simpleXmlClass = new SimpleXmlClass {A = "Hello World"};
+			var xml = simpleXmlClass.SerializeToXml(omitNsQualifications: true);
+			xml.Flatten().Should().Be("<?xml version=\"1.0\" encoding=\"utf-16\"?><SimpleXmlClass><A>Hello World</A></SimpleXmlClass>");
+		}
+
+		[Test]
+		public void should_serialize_with_indents_if_settings_specified()
+		{
+			var simpleXmlClass = new SimpleXmlClass { A = "Hello World" };
+
+			var settings = new XmlWriterSettings
+			{
+				Indent = true,
+				IndentChars = "\t",
+				NewLineHandling = NewLineHandling.None,
+				NewLineChars = string.Empty
+			};
+
+			var xml = simpleXmlClass.SerializeToXml(omitNsQualifications: true, settings:settings);
+			xml.Should().Be("<?xml version=\"1.0\" encoding=\"utf-16\"?><SimpleXmlClass>"+ "\t" + "<A>Hello World</A></SimpleXmlClass>");
+		}
+
 		[Test]
 		public void should_deserialize_string_into_collection()
 		{

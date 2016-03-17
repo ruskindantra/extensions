@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Xml;
 using System.Xml.Serialization;
 using JetBrains.Annotations;
 
@@ -17,8 +18,10 @@ namespace RuskinDantra.Extensions
 		/// <typeparam name="T">The type of object being serialized</typeparam>
 		/// <param name="data">The instance of an object being serialized into XML</param>
 		/// <param name="containingType">The type being contained within a collection</param>
+		/// <param name="omitNsQualifications">Set this to true if you want the generated XML to omit XML namespace qualifications</param>
+		/// <param name="settings">Any extra settings we need while serializing xml</param>
 		/// <returns></returns>
-		public static string SerializeToXml<T>(this T data, Type containingType = null) where T : class
+		public static string SerializeToXml<T>(this T data, Type containingType = null, bool omitNsQualifications = false, XmlWriterSettings settings = null) where T : class
 		{
 			XmlSerializer serializer;
 			if (containingType != null && containingType.IsInterface)
@@ -30,9 +33,16 @@ namespace RuskinDantra.Extensions
 				serializer = new XmlSerializer(data.GetType());
 
 			var stringBuilder = new StringBuilder();
-			using (var writer = new StringWriter(stringBuilder))
+			using (var writer = XmlWriter.Create(stringBuilder, settings))
 			{
-				serializer.Serialize(writer, data);
+				if (omitNsQualifications)
+				{
+					XmlSerializerNamespaces xmlSerializerNamespaces = new XmlSerializerNamespaces();
+					xmlSerializerNamespaces.Add("", "");
+					serializer.Serialize(writer, data, xmlSerializerNamespaces);
+				}
+				else
+					serializer.Serialize(writer, data);
 			}
 
 			return stringBuilder.ToString();
