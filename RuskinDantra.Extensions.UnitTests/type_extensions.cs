@@ -9,6 +9,26 @@ namespace RuskinDantra.Extensions.UnitTests
 	[TestFixture]
     public class type_extensions
     {
+		private class TempAttribute : Attribute
+		{
+		}
+
+		[Serializable]
+		private class ClassWithAttribute
+		{
+
+		}
+
+		[Test]
+		public void should_return_attribute_if_class_is_decorated_with_it()
+		{
+			typeof (ClassWithAttribute).HasAttribute<SerializableAttribute>().Should().BeTrue();
+			typeof (ClassWithAttribute).HasAttribute<TempAttribute>().Should().BeFalse();
+
+			typeof(ClassWithAttribute).GetAttribute<SerializableAttribute>().Should().NotBeNull();
+			typeof(ClassWithAttribute).GetAttribute<TempAttribute>().Should().BeNull();
+		}
+
 		[Test]
 	    public void has_interface_should_return_true_if_type_implements_interface()
 		{

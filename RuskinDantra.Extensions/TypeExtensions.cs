@@ -7,8 +7,6 @@ namespace RuskinDantra.Extensions
 {
     public static class TypeExtensions
     {
-
-
 	    public static IEnumerable<Type> AllImplementors(this Type type)
 	    {
 		    if (!type.IsInterface)
@@ -19,6 +17,17 @@ namespace RuskinDantra.Extensions
 				.SelectMany(s => s.GetTypes())
 				.Where(t => t != type)
 				.Where(type.IsAssignableFrom);
+		}
+
+		public static TAttribute GetAttribute<TAttribute>(this Type type, bool inherit = true)
+		{
+			return (TAttribute)type.GetCustomAttributes(typeof(TAttribute), inherit).SingleOrDefault();
+		}
+
+		public static bool HasAttribute<TAttribute>(this Type type, bool inherit = true)
+			where TAttribute : class
+		{
+			return GetAttribute<TAttribute>(type, inherit) != null;
 		}
 
 		public static bool HasInterface<TInterface>([NotNull] this Type type)
