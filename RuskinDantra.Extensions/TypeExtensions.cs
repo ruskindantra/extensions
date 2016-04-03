@@ -5,7 +5,7 @@ using JetBrains.Annotations;
 
 namespace RuskinDantra.Extensions
 {
-    public static class TypeExtensions
+	public static class TypeExtensions
     {
 	    public static IEnumerable<Type> AllImplementors(this Type type)
 	    {

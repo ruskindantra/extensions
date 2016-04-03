@@ -14,7 +14,10 @@
 		<tags>CSharp extensions</tags>
 		<releaseNotes>
 			3-Jan-16
-				* Added HasInterface extension method
+			* Added HasInterface extension method
+			--------
+			3-Apr-16
+			* Added extension methods to get attribute from type and member info objects
 		</releaseNotes>
 		<dependencies>
 			<dependency id="JetBrains.Annotations" version="10.0.0" />

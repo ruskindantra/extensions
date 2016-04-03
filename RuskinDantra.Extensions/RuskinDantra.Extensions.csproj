@@ -183,6 +183,7 @@
     <Compile Include="ByteExtensions.cs" />
     <Compile Include="DataStructures\XmlSerializableInterfaceList.cs" />
     <Compile Include="EnumerableExtensions.cs" />
+    <Compile Include="MemberInfoExtensions.cs" />
     <Compile Include="ObjectExtensions.cs" />
     <Compile Include="StringExtensions.cs" />
     <Compile Include="TypeExtensions.cs" />
