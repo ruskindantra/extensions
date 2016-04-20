@@ -61,6 +61,7 @@
   <ItemGroup>
     <Compile Include="byte_extensions.cs" />
     <Compile Include="enumerable_extensions.cs" />
+    <Compile Include="event_handler_extensions.cs" />
     <Compile Include="member_info_extensions.cs" />
     <Compile Include="object_extensions.cs" />
     <Compile Include="string_extensions.cs" />

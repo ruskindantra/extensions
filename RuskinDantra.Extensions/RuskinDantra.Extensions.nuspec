@@ -18,6 +18,9 @@
 			--------
 			3-Apr-16
 			* Added extension methods to get attribute from type and member info objects
+			--------
+			20-Apr-16
+			* Added eventhandler extension to raise if event is wired
 		</releaseNotes>
 		<dependencies>
 			<dependency id="JetBrains.Annotations" version="10.0.0" />
