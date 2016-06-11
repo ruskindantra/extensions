@@ -181,6 +181,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ByteExtensions.cs" />
+    <Compile Include="CollectionExtensions.cs" />
     <Compile Include="DataStructures\XmlSerializableInterfaceList.cs" />
     <Compile Include="EnumerableExtensions.cs" />
     <Compile Include="EventHandlerExtensions.cs" />

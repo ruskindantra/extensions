@@ -60,6 +60,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="byte_extensions.cs" />
+    <Compile Include="collection_extensions.cs" />
     <Compile Include="enumerable_extensions.cs" />
     <Compile Include="event_handler_extensions.cs" />
     <Compile Include="member_info_extensions.cs" />
