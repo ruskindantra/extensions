@@ -25,7 +25,7 @@ namespace RuskinDantra.Extensions
             int firstIndexOfRepeat = -1;
             foreach (var item in collectionAsList)
             {
-                if (itemSeen != null && equalityComparer(item, itemSeen))
+                if (itemSeen != null && equalityComparer(itemSeen, item))
                 {
                     currentRepeats.Add(itemSeen);
                     itemSeen = item;
