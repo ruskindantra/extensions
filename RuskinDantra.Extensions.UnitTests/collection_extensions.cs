@@ -89,6 +89,29 @@ namespace RuskinDantra.Extensions.UnitTests
         }
 
         [Test]
+        public void should_return_index_of_repeated_object_array_with_custom_equality_comparer_only_lhs_to_rhs_not_other_way_around()
+        {
+            var testCase1 = new test_class_default_comparer() { A = "a", B = 0 };
+            var testCase2 = new test_class_default_comparer() { A = "b", B = 1 };
+            var testCase3 = new test_class_default_comparer() { A = "c", B = 2 };
+
+            // looks like 4 and 5 are equal but not according to the default comparer, only according to a custom comparer
+            var testCase4 = new test_class_default_comparer() { A = "d", B = 3 };
+            var testCase5 = new test_class_default_comparer() { A = "e", B = 3 };
+
+            var testCase6 = new test_class_default_comparer() { A = "z", B = 2 };
+
+            var testCase7 = new test_class_default_comparer() { A = "e", B = 3 };
+            var testCase8 = new test_class_default_comparer() { A = "d", B = 3 };
+
+            var testCases = new[] { testCase1, testCase2, testCase3, testCase4, testCase5, testCase6, testCase7, testCase8 };
+
+            var indexesOfRepeats = testCases.IndexesOfRepeats(equalityComparer: (lhs, rhs) => lhs.A == "d" && rhs.A == "e").ToList();
+            indexesOfRepeats.Should().HaveCount(1);
+            indexesOfRepeats.Should().BeEquivalentTo(new[] { 3 });
+        }
+
+        [Test]
         public void should_return_index_of_repeated_object_array_with_builtin_equality_comparer()
         {
             var testCase1 = new test_class_builtin_comparer() { A = "a", B = 0 };
