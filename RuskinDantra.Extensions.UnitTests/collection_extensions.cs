@@ -1,13 +1,41 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using FluentAssertions;
 using NUnit.Framework;
+using Ploeh.AutoFixture;
 
 namespace RuskinDantra.Extensions.UnitTests
 {
     [TestFixture]
     public class collection_extensions
     {
+        [Test]
+        public void remove_all_but_first_x_items_should_throw_exception_for_null_collection()
+        {
+            List<string> collection = null;
+            Action removeAllButAction = () => collection.RemoveAllButFirstXItems();
+            removeAllButAction.ShouldThrow<ArgumentNullException>();
+        }
+
+        [Test]
+        public void remove_all_but_first_x_items_should_throw_if_removing_more_items_than_collection_initially_contains()
+        {
+            var fixture = new Fixture();
+
+            var collection = fixture.CreateMany<string>();
+            Action removeAllButAction = () => collection.RemoveAllButFirstXItems(collection.Count() + 1);
+            removeAllButAction.ShouldThrow<InvalidOperationException>();
+        }
+
+        [TestCase(new[] {1, 2, 3, 4}, 2, new[] { 1, 2})]
+        [TestCase(new[] {1, 2, 3, 4}, 2, new[] { 1, 2})]
+        [TestCase(new[] {1, 2, 3, 4}, 4, new[] { 1, 2, 3, 4})]
+        public void remove_all_but_first_x_items_should_remove_items_as_instructed(int[] original, int itemsToKeep, int[] expected)
+        {
+            original.RemoveAllButFirstXItems(itemsToKeep).ShouldBeEquivalentTo(expected);
+        }
+
         [TestCase(new[] { 1, 1, 1, 3, 3 }, 3, new[] { 0 })]
         [TestCase(new[] { 0, 1, 1, 2, 3, 3, 3 }, 3, new[] { 4 })]
         [TestCase(new[] { 0, 1, 1, 1, 1, 1, 2, 3, 3, 3 }, 4, new[] { 1 })]
