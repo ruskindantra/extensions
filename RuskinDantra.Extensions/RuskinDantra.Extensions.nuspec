@@ -10,7 +10,7 @@
 		<requireLicenseAcceptance>false</requireLicenseAcceptance>
 		<licenseUrl>https://github.com/ruskindantra/extensions/blob/master/LICENSE</licenseUrl>
 		<description>Some common extensions used by Ruskin Dantra during the course of his coding life</description>
-		<copyright>Copyright ©  2016 Ruskin Dantra</copyright>
+		<copyright>Copyright ©  2017 Ruskin Dantra</copyright>
 		<tags>CSharp extensions</tags>
 		<releaseNotes>
       3-Jan-16
@@ -24,6 +24,9 @@
       --------
       11-Jun-16
       * Added extension method to return an array of indexes where repeats occur
+      --------
+      12-Mar-17
+      * Updated nuget packages and moved to .net 4.6.2
     </releaseNotes>
 		<dependencies>
 			<dependency id="JetBrains.Annotations" version="10.0.0" />
@@ -35,6 +38,7 @@
 		<file src="\bin\release\NET451\RuskinDantra.Extensions.dll" target="lib\net451" />
 		<file src="\bin\release\NET452\RuskinDantra.Extensions.dll" target="lib\net452" />
 		<file src="\bin\release\NET46\RuskinDantra.Extensions.dll" target="lib\net46" />
-		<file src="\bin\release\NET461\RuskinDantra.Extensions.dll" target="lib\net461" />
+    <file src="\bin\release\NET461\RuskinDantra.Extensions.dll" target="lib\net461" />
+    <file src="\bin\release\NET462\RuskinDantra.Extensions.dll" target="lib\net462" />
 	</files>
 </package>

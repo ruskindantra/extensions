@@ -166,10 +166,20 @@
     <WarningLevel>4</WarningLevel>
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Framework)' == 'NET462' And '$(Configuration)|$(Platform)' == 'Release|AnyCPU'">
+    <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\$(Configuration)\$(Framework)\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
   <ItemGroup>
-    <Reference Include="JetBrains.Annotations, Version=10.1.4.0, Culture=neutral, PublicKeyToken=1010a0d8d6380325, processorArchitecture=MSIL">
-      <HintPath>..\packages\JetBrains.Annotations.10.1.4\lib\net20\JetBrains.Annotations.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="JetBrains.Annotations, Version=10.4.0.0, Culture=neutral, PublicKeyToken=1010a0d8d6380325, processorArchitecture=MSIL">
+      <HintPath>..\packages\JetBrains.Annotations.10.4.0\lib\net\JetBrains.Annotations.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -192,7 +202,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.config" />
+    <None Include="packages.config">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="RuskinDantra.Extensions.nuspec" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
@@ -208,6 +220,7 @@
     <MSBuild Condition="'$(NET452RUN)' != 'True'" Projects="$(MSBuildProjectFile)" Properties="Framework=NET452;NET452RUN=True" RunEachTargetSeparately="true" Targets="Rebuild" />
     <MSBuild Condition="'$(NET46RUN)' != 'True'" Projects="$(MSBuildProjectFile)" Properties="Framework=NET46;NET46RUN=True" RunEachTargetSeparately="true" Targets="Rebuild" />
     <MSBuild Condition="'$(NET461RUN)' != 'True'" Projects="$(MSBuildProjectFile)" Properties="Framework=NET461;NET461RUN=True" RunEachTargetSeparately="true" Targets="Rebuild" />
+    <MSBuild Condition="'$(NET462RUN)' != 'True'" Projects="$(MSBuildProjectFile)" Properties="Framework=NET462;NET462RUN=True" RunEachTargetSeparately="true" Targets="Rebuild" />
   </Target>
   <!-- <Target Name="BUILD451" AfterTargets="AfterBuild">
 	<MSBuild Condition="'$(Framework)' != 'NET451'" Projects="$(MSBuildProjectFile)" Properties="Framework=NET451" RunEachTargetSeparately="true" />
