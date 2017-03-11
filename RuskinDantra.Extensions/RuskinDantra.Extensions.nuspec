@@ -36,12 +36,12 @@
     </dependencies>
   </metadata>
   <files>
-    <file src="\bin\release\NET40\RuskinDantra.Extensions.dll" target="lib\net40" />
-    <file src="\bin\release\NET45\RuskinDantra.Extensions.dll" target="lib\net45" />
-    <file src="\bin\release\NET451\RuskinDantra.Extensions.dll" target="lib\net451" />
-    <file src="\bin\release\NET452\RuskinDantra.Extensions.dll" target="lib\net452" />
-    <file src="\bin\release\NET46\RuskinDantra.Extensions.dll" target="lib\net46" />
-    <file src="\bin\release\NET461\RuskinDantra.Extensions.dll" target="lib\net461" />
-    <file src="\bin\release\NET462\RuskinDantra.Extensions.dll" target="lib\net462" />
+    <file src=".\bin\release\NET40\RuskinDantra.Extensions.dll" target="lib\net40" />
+    <file src=".\bin\release\NET45\RuskinDantra.Extensions.dll" target="lib\net45" />
+    <file src=".\bin\release\NET451\RuskinDantra.Extensions.dll" target="lib\net451" />
+    <file src=".\bin\release\NET452\RuskinDantra.Extensions.dll" target="lib\net452" />
+    <file src=".\bin\release\NET46\RuskinDantra.Extensions.dll" target="lib\net46" />
+    <file src=".\bin\release\NET461\RuskinDantra.Extensions.dll" target="lib\net461" />
+    <file src=".\bin\release\NET462\RuskinDantra.Extensions.dll" target="lib\net462" />
   </files>
 </package>
