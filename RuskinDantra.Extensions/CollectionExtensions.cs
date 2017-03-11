@@ -7,6 +7,21 @@ namespace RuskinDantra.Extensions
 {
     public static class CollectionExtensions
     {
+        public static IEnumerable<T> RemoveAllButFirstXItems<T>(this IEnumerable<T> collection, int itemsToKeep = 0)
+        {
+            if (collection == null)
+                throw new ArgumentNullException(nameof(collection));
+
+            var list = collection.ToList();
+            if (itemsToKeep == 0)
+                list.Clear();
+            else if (itemsToKeep > list.Count)
+                throw new InvalidOperationException($"Collection only contains <{list.Count}> items and we cannot prune it down to <{itemsToKeep}>");
+            else
+                list.RemoveRange(itemsToKeep, list.Count - itemsToKeep);
+            return list;
+        }
+
         public static IEnumerable<int> IndexesOfRepeats<T>([NotNull] this IEnumerable<T> collection, int repeatCount = 2, [CanBeNull] Func<T, T, bool> equalityComparer = null)
         {
             var collectionAsList = collection as IList<T> ?? collection.ToList();
