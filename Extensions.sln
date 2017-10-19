@@ -1,16 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.24720.0
+# Visual Studio 15
+VisualStudioVersion = 15.0.27004.2005
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "build", "build", "{78F16DD4-5507-454B-866E-C57D19188772}"
-	ProjectSection(SolutionItems) = preProject
-		appveyor.yml = appveyor.yml
-	EndProjectSection
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RuskinDantra.Extensions", "RuskinDantra.Extensions\RuskinDantra.Extensions.csproj", "{8D2BD655-4BB9-4DFD-BBE1-8E824A876D74}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RuskinDantra.Extensions", "RuskinDantra.Extensions\RuskinDantra.Extensions.csproj", "{C4F7DBF1-2750-416E-9FD8-084FE8EB3C2F}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RuskinDantra.Extensions.UnitTests", "RuskinDantra.Extensions.UnitTests\RuskinDantra.Extensions.UnitTests.csproj", "{FFFAA7C8-57AC-45C7-A956-E5E8BD09A4A7}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RuskinDantra.Extensions.UnitTests", "RuskinDantra.Extensions.UnitTests\RuskinDantra.Extensions.UnitTests.csproj", "{0C900A12-225A-416F-AC1E-56FA0C1973FF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -18,16 +13,19 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{C4F7DBF1-2750-416E-9FD8-084FE8EB3C2F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C4F7DBF1-2750-416E-9FD8-084FE8EB3C2F}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C4F7DBF1-2750-416E-9FD8-084FE8EB3C2F}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C4F7DBF1-2750-416E-9FD8-084FE8EB3C2F}.Release|Any CPU.Build.0 = Release|Any CPU
-		{FFFAA7C8-57AC-45C7-A956-E5E8BD09A4A7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{FFFAA7C8-57AC-45C7-A956-E5E8BD09A4A7}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{FFFAA7C8-57AC-45C7-A956-E5E8BD09A4A7}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{FFFAA7C8-57AC-45C7-A956-E5E8BD09A4A7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8D2BD655-4BB9-4DFD-BBE1-8E824A876D74}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8D2BD655-4BB9-4DFD-BBE1-8E824A876D74}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8D2BD655-4BB9-4DFD-BBE1-8E824A876D74}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8D2BD655-4BB9-4DFD-BBE1-8E824A876D74}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0C900A12-225A-416F-AC1E-56FA0C1973FF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0C900A12-225A-416F-AC1E-56FA0C1973FF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0C900A12-225A-416F-AC1E-56FA0C1973FF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0C900A12-225A-416F-AC1E-56FA0C1973FF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {16BABD7D-781C-4C51-8848-C656EB8B9E86}
 	EndGlobalSection
 EndGlobal

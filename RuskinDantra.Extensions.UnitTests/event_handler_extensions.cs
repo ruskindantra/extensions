@@ -1,10 +1,9 @@
 using System;
 using FluentAssertions;
-using NUnit.Framework;
+using Xunit;
 
 namespace RuskinDantra.Extensions.UnitTests
 {
-	[TestFixture]
 	public class event_handler_extensions
 	{
 		private class event_class
@@ -19,7 +18,7 @@ namespace RuskinDantra.Extensions.UnitTests
 			}
 		}
 
-		[Test]
+		[Fact]
 		public void should_remove_single_event_handler()
 		{
 			var eventClass = new event_class();
@@ -30,7 +29,7 @@ namespace RuskinDantra.Extensions.UnitTests
 			eventFired.Should().BeFalse();
 		}
 
-		[Test]
+		[Fact]
 		public void should_remove_multiple_event_handler()
 		{
 			var eventClass = new event_class();
@@ -44,7 +43,7 @@ namespace RuskinDantra.Extensions.UnitTests
 			eventFired2.Should().BeFalse();
 		}
 
-		[Test]
+		[Fact]
 		public void should_not_remove_event_handler_if_different_name_supplied()
 		{
 			var eventClass = new event_class();
@@ -58,7 +57,7 @@ namespace RuskinDantra.Extensions.UnitTests
 			eventFired2.Should().BeTrue();
 		}
 
-		[Test]
+		[Fact]
 		public void should_throw_if_event_does_not_exist()
 		{
 			var eventClass = new event_class();

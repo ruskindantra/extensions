@@ -30,18 +30,15 @@
       --------
       12-Mar-17
       * Updated nuget packages and moved to .net 4.6.2
+      --------
+      20-10-17
+      * Moved to .net standard
     </releaseNotes>
     <dependencies>
-      <dependency id="JetBrains.Annotations" version="10.0.0" />
+      <dependency id="JetBrains.Annotations" version="11.0.0" />
     </dependencies>
   </metadata>
   <files>
-    <file src=".\bin\release\NET40\RuskinDantra.Extensions.dll" target="lib\net40" />
-    <file src=".\bin\release\NET45\RuskinDantra.Extensions.dll" target="lib\net45" />
-    <file src=".\bin\release\NET451\RuskinDantra.Extensions.dll" target="lib\net451" />
-    <file src=".\bin\release\NET452\RuskinDantra.Extensions.dll" target="lib\net452" />
-    <file src=".\bin\release\NET46\RuskinDantra.Extensions.dll" target="lib\net46" />
-    <file src=".\bin\release\NET461\RuskinDantra.Extensions.dll" target="lib\net461" />
-    <file src=".\bin\release\NET462\RuskinDantra.Extensions.dll" target="lib\net462" />
+    <file src=".\bin\Release\**\*.*" target="lib" />
   </files>
 </package>

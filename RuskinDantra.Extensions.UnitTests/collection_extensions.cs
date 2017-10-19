@@ -2,15 +2,13 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using FluentAssertions;
-using NUnit.Framework;
-using Ploeh.AutoFixture;
+using Xunit;
 
 namespace RuskinDantra.Extensions.UnitTests
 {
-    [TestFixture]
     public class collection_extensions
     {
-        [Test]
+        [Fact]
         public void remove_all_but_first_x_items_should_throw_exception_for_null_collection()
         {
             List<string> collection = null;
@@ -18,40 +16,41 @@ namespace RuskinDantra.Extensions.UnitTests
             removeAllButAction.ShouldThrow<ArgumentNullException>();
         }
 
-        [Test]
+        [Fact]
         public void remove_all_but_first_x_items_should_throw_if_removing_more_items_than_collection_initially_contains()
         {
-            var fixture = new Fixture();
-
-            var collection = fixture.CreateMany<string>();
+            var collection = new[] {"a", "b", "c", "d"};
             Action removeAllButAction = () => collection.RemoveAllButFirstXItems(collection.Count() + 1);
             removeAllButAction.ShouldThrow<InvalidOperationException>();
         }
 
-        [TestCase(new[] {1, 2, 3, 4}, 2, new[] { 1, 2})]
-        [TestCase(new[] {1, 2, 3, 4}, 2, new[] { 1, 2})]
-        [TestCase(new[] {1, 2, 3, 4}, 4, new[] { 1, 2, 3, 4})]
+        [Theory]
+        [InlineData(new[] {1, 2, 3, 4}, 2, new[] { 1, 2})]
+        [InlineData(new[] {1, 2, 3, 4}, 2, new[] { 1, 2})]
+        [InlineData(new[] {1, 2, 3, 4}, 4, new[] { 1, 2, 3, 4})]
         public void remove_all_but_first_x_items_should_remove_items_as_instructed(int[] original, int itemsToKeep, int[] expected)
         {
             original.RemoveAllButFirstXItems(itemsToKeep).ShouldBeEquivalentTo(expected);
         }
 
-        [TestCase(new[] { 1, 1, 1, 3, 3 }, 3, new[] { 0 })]
-        [TestCase(new[] { 0, 1, 1, 2, 3, 3, 3 }, 3, new[] { 4 })]
-        [TestCase(new[] { 0, 1, 1, 1, 1, 1, 2, 3, 3, 3 }, 4, new[] { 1 })]
-        [TestCase(new[] { 0, 1, 2, 3, 4, 5 }, 2, new int[0])]
-        [TestCase(new int[0], 2, new int[0])]
-        public void should_return_index_of_repeated_int_array_with_default_equality_comparer(int[] testCase, int repeatCount, int[] expectedRepeats)
+        [Theory]
+        [InlineData(new[] { 1, 1, 1, 3, 3 }, 3, new[] { 0 })]
+        [InlineData(new[] { 0, 1, 1, 2, 3, 3, 3 }, 3, new[] { 4 })]
+        [InlineData(new[] { 0, 1, 1, 1, 1, 1, 2, 3, 3, 3 }, 4, new[] { 1 })]
+        [InlineData(new[] { 0, 1, 2, 3, 4, 5 }, 2, new int[0])]
+        [InlineData(new int[0], 2, new int[0])]
+        public void should_return_index_of_repeated_int_array_with_default_equality_comparer_repeat_count(int[] testCase, int repeatCount, int[] expectedRepeats)
         {
             var indexesOfRepeats = testCase.IndexesOfRepeats(repeatCount: repeatCount).ToList();
             indexesOfRepeats.Should().HaveCount(expectedRepeats.Length);
             indexesOfRepeats.Should().BeEquivalentTo(expectedRepeats);
         }
 
-        [TestCase(new[] { 1, 1, 3, 3 }, new[] { 0, 2 })]
-        [TestCase(new[] { 0, 1, 1, 2, 3, 3 }, new[] { 1, 4 })]
-        [TestCase(new[] { 0, 1, 2, 3, 4, 5 }, new int[0])]
-        [TestCase(new int[0], new int[0])]
+        [Theory]
+        [InlineData(new[] { 1, 1, 3, 3 }, new[] { 0, 2 })]
+        [InlineData(new[] { 0, 1, 1, 2, 3, 3 }, new[] { 1, 4 })]
+        [InlineData(new[] { 0, 1, 2, 3, 4, 5 }, new int[0])]
+        [InlineData(new int[0], new int[0])]
         public void should_return_index_of_repeated_int_array_with_default_equality_comparer(int[] testCase, int[] expectedRepeats)
         {
             var indexesOfRepeats = testCase.IndexesOfRepeats().ToList();
@@ -59,10 +58,11 @@ namespace RuskinDantra.Extensions.UnitTests
             indexesOfRepeats.Should().BeEquivalentTo(expectedRepeats);
         }
 
-        [TestCase(new[] { "1", "1", "3", "3" }, new[] { 0, 2 })]
-        [TestCase(new[] { "0", "1", "1", "2", "3", "3" }, new[] { 1, 4 })]
-        [TestCase(new[] { "0", "1", "2", "3", "4", "5" }, new int[0])]
-        [TestCase(new string[0], new int[0])]
+        [Theory]
+        [InlineData(new[] { "1", "1", "3", "3" }, new[] { 0, 2 })]
+        [InlineData(new[] { "0", "1", "1", "2", "3", "3" }, new[] { 1, 4 })]
+        [InlineData(new[] { "0", "1", "2", "3", "4", "5" }, new int[0])]
+        [InlineData(new string[0], new int[0])]
         public void should_return_index_of_repeated_string_array_with_default_equality_comparer(string[] testCase, int[] expectedRepeats)
         {
             var indexesOfRepeats = testCase.IndexesOfRepeats().ToList();
@@ -70,9 +70,10 @@ namespace RuskinDantra.Extensions.UnitTests
             indexesOfRepeats.Should().BeEquivalentTo(expectedRepeats);
         }
 
-        [TestCase(new[] { "a", "a", "b", "B" }, new[] { 0, 2 })]
-        [TestCase(new[] { "X", "X", "Y", "y" }, new[] { 0, 2 })]
-        [TestCase(new[] { "a", "B", "C", "d" }, new int[0])]
+        [Theory]
+        [InlineData(new[] { "a", "a", "b", "B" }, new[] { 0, 2 })]
+        [InlineData(new[] { "X", "X", "Y", "y" }, new[] { 0, 2 })]
+        [InlineData(new[] { "a", "B", "C", "d" }, new int[0])]
         public void should_return_index_of_repeated_string_array_with_custom_equality_comparer(string[] testCase, int[] expectedRepeats)
         {
             var indexesOfRepeats = testCase.IndexesOfRepeats(equalityComparer:(lhs, rhs) => string.Compare(lhs, rhs, StringComparison.InvariantCultureIgnoreCase) == 0).ToList();
@@ -80,7 +81,7 @@ namespace RuskinDantra.Extensions.UnitTests
             indexesOfRepeats.Should().BeEquivalentTo(expectedRepeats);
         }
 
-        [Test]
+        [Fact]
         public void should_return_index_of_repeated_object_array_with_default_equality_comparer()
         {
             var testCase1 = new test_class_default_comparer() { A = "a", B = 0 };
@@ -98,7 +99,7 @@ namespace RuskinDantra.Extensions.UnitTests
             indexesOfRepeats.Should().BeEquivalentTo(new[] { 4 });
         }
 
-        [Test]
+        [Fact]
         public void should_return_index_of_repeated_object_array_with_custom_equality_comparer()
         {
             var testCase1 = new test_class_default_comparer() { A = "a", B = 0 };
@@ -116,7 +117,7 @@ namespace RuskinDantra.Extensions.UnitTests
             indexesOfRepeats.Should().BeEquivalentTo(new[] {3});
         }
 
-        [Test]
+        [Fact]
         public void should_return_index_of_repeated_object_array_with_custom_equality_comparer_only_lhs_to_rhs_not_other_way_around()
         {
             var testCase1 = new test_class_default_comparer() { A = "a", B = 0 };
@@ -139,7 +140,7 @@ namespace RuskinDantra.Extensions.UnitTests
             indexesOfRepeats.Should().BeEquivalentTo(new[] { 3 });
         }
 
-        [Test]
+        [Fact]
         public void should_return_index_of_repeated_object_array_with_builtin_equality_comparer()
         {
             var testCase1 = new test_class_builtin_comparer() { A = "a", B = 0 };

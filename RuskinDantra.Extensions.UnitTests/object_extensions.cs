@@ -5,9 +5,8 @@ using System.Xml;
 using System.Xml.Linq;
 using System.Xml.Serialization;
 using FluentAssertions;
-using NUnit.Framework;
-using Ploeh.AutoFixture;
 using RuskinDantra.Extensions.DataStructures;
+using Xunit;
 
 namespace RuskinDantra.Extensions.UnitTests
 {
@@ -75,10 +74,9 @@ namespace RuskinDantra.Extensions.UnitTests
 		public string A { get; set; }
 	}
 
-	[TestFixture]
 	public class object_extensions
 	{
-		[Test]
+		[Fact]
 		public void should_serialize_without_namespace_information()
 		{
 			var simpleXmlClass = new SimpleXmlClass {A = "Hello World"};
@@ -86,7 +84,7 @@ namespace RuskinDantra.Extensions.UnitTests
 			xml.Flatten().Should().Be("<?xml version=\"1.0\" encoding=\"utf-16\"?><SimpleXmlClass><A>Hello World</A></SimpleXmlClass>");
 		}
 
-		[Test]
+		[Fact]
 		public void should_serialize_with_indents_if_settings_specified()
 		{
 			var simpleXmlClass = new SimpleXmlClass { A = "Hello World" };
@@ -103,7 +101,7 @@ namespace RuskinDantra.Extensions.UnitTests
 			xml.Should().Be("<?xml version=\"1.0\" encoding=\"utf-16\"?><SimpleXmlClass>"+ "\t" + "<A>Hello World</A></SimpleXmlClass>");
 		}
 
-		[Test]
+		[Fact]
 		public void should_deserialize_string_into_collection()
 		{
 			var xml = "<?xml version=\"1.0\" encoding=\"utf-16\"?>\r\n" +
@@ -128,7 +126,7 @@ namespace RuskinDantra.Extensions.UnitTests
 			testCollection.ElementAt(1).Should().BeOfType<ChangeB>();
 		}
 
-		[Test]
+		[Fact]
 		public void should_serialize_collection_into_string()
 		{
 			var testCollection = new test_collection()
@@ -162,20 +160,18 @@ namespace RuskinDantra.Extensions.UnitTests
 			changeB.Element("ChangeB").Element("ChangeType").Should().HaveValue("ChangeB");
 		}
 
-		[Test]
+		[Fact]
 		public void should_serialize_object_with_attribute_into_string()
 		{
-			var fixture = new Fixture();
-			var testObject = fixture.Create<test_object_with_attribute>();
-			testObject.PropertyA = "Some property";
+		    var testObject = new test_object_with_attribute {PropertyA = "Some property"};
 
-			string xml = testObject.SerializeToXml();
+		    string xml = testObject.SerializeToXml();
 			XElement actualXml = XElement.Parse(xml);
 			actualXml.Name.LocalName.Should().Be("test_object");
 			actualXml.Should().HaveAttribute("PropertyA", "Some property");
 		}
 
-		[Test]
+		[Fact]
 		public void should_deserialize_string_with_attribute_into_object()
 		{
 			string xml = "<?xml version=\"1.0\" encoding=\"utf-16\"?>\r\n" +
@@ -186,7 +182,7 @@ namespace RuskinDantra.Extensions.UnitTests
 			testObject.PropertyA.Should().Be("Some property");
 		}
 
-		[Test]
+		[Fact]
 		public void should_deserialize_string_with_attribute_into_object_with_type_passed_in()
 		{
 			string xml = "<?xml version=\"1.0\" encoding=\"utf-16\"?>\r\n" +
@@ -197,12 +193,13 @@ namespace RuskinDantra.Extensions.UnitTests
 			testObject.PropertyA.Should().Be("Some property");
 		}
 
-		[Test]
+		[Fact]
 		public void should_serialize_object_into_string()
 		{
-			var fixture = new Fixture();
-			var testObject = fixture.Create<test_object>();
-			testObject.PropertyA = "Some property";
+		    var testObject = new test_object
+		    {
+		        PropertyA = "Some property"
+		    };
 
 			string xml = testObject.SerializeToXml();
 			XElement actualXml = XElement.Parse(xml);
@@ -210,7 +207,7 @@ namespace RuskinDantra.Extensions.UnitTests
 			actualXml.Should().HaveElement("PropertyA").And.HaveValue("Some property");
 		}
 
-		[Test]
+		[Fact]
 		public void null_object_should_throw_null_reference_exception()
 		{
 			object nullObject = null;
@@ -218,10 +215,11 @@ namespace RuskinDantra.Extensions.UnitTests
 			throwIfNullAction.ShouldThrow<NullReferenceException>().WithMessage("Item <System.Object> cannot be null");
 		}
 
-		[TestCase("")]
-		[TestCase(null)]
-		[TestCase("custom message")]
-		[TestCase("    ")]
+        [Theory]
+		[InlineData("")]
+		[InlineData(null)]
+		[InlineData("custom message")]
+		[InlineData("    ")]
 		public void null_object_should_throw_null_reference_exception_with_custom_message_if_provided(string customMessage)
 		{
 			if (string.IsNullOrWhiteSpace(customMessage))
@@ -232,10 +230,11 @@ namespace RuskinDantra.Extensions.UnitTests
 			throwIfNullAction.ShouldThrow<NullReferenceException>().WithMessage(customMessage);
 		}
 
-		[TestCase("")]
-		[TestCase(null)]
-		[TestCase("custom message")]
-		[TestCase("    ")]
+        [Theory]
+		[InlineData("")]
+		[InlineData(null)]
+		[InlineData("custom message")]
+		[InlineData("    ")]
 		public void null_struct_should_throw_null_reference_exception_with_custom_message_if_provided(string customMessage)
 		{
 			if (string.IsNullOrWhiteSpace(customMessage))
@@ -246,7 +245,7 @@ namespace RuskinDantra.Extensions.UnitTests
 			throwIfNullAction.ShouldThrow<NullReferenceException>().WithMessage(customMessage);
 		}
 
-		[Test]
+		[Fact]
 		public void should_be_able_to_serialize_a_standard_collection()
 		{
 			var simpleCollectionOfStrings = new List<string>
@@ -265,7 +264,7 @@ namespace RuskinDantra.Extensions.UnitTests
 			strings.Should().Contain(e => e.Value == "B");
 		}
 
-		[Test]
+		[Fact]
 		public void should_be_able_to_deserialize_a_standard_collection()
 		{
 			var xml = "<?xml version=\"1.0\" encoding=\"utf-16\"?>\r\n<ArrayOfString xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">" +

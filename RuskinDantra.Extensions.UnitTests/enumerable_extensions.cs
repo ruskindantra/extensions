@@ -2,14 +2,13 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using FluentAssertions;
-using NUnit.Framework;
-using Ploeh.AutoFixture;
+using Xunit;
 
 namespace RuskinDantra.Extensions.UnitTests
 {
 	public class enumerable_extensions
 	{
-		[Test]
+		[Fact]
 		public void should_throw_if_collection_is_null()
 		{
 			IEnumerable<int> collection = null;
@@ -18,7 +17,7 @@ namespace RuskinDantra.Extensions.UnitTests
 			replaceAction.ShouldThrow<ArgumentNullException>();
 		}
 
-		[Test]
+		[Fact]
 		public void should_return_same_collection_if_collection_is_empty()
 		{
 			IEnumerable<int> collection = new int[0]{};
@@ -27,46 +26,43 @@ namespace RuskinDantra.Extensions.UnitTests
 			replacedCollection.ShouldAllBeEquivalentTo(collection);
 		}
 
-		[Test]
+		[Fact]
 		public void should_return_same_collection_if_collection_does_not_contain_item()
-		{ 
-			var fixture = new Fixture();
-			IEnumerable<int> collection = fixture.CreateMany<int>();
+		{
+		    IEnumerable<int> collection = new[] {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
 
 			int newItem = 555;
-			Assume.That(collection.Any(i => i == newItem), Is.False);
+            collection.Should().NotContain(i => i == newItem);
 
-			int existingItemWhichShouldNotExist = fixture.Create<int>();
-			Assume.That(collection.Any(i => i == existingItemWhichShouldNotExist), Is.False);
+			int existingItemWhichShouldNotExist = 100;
+		    collection.Should().NotContain(i => i == existingItemWhichShouldNotExist);
 
-			var replacedCollection = collection.Replace(existingItemWhichShouldNotExist, newItem);
+            var replacedCollection = collection.Replace(existingItemWhichShouldNotExist, newItem);
 			replacedCollection.ShouldAllBeEquivalentTo(collection);
 		}
 
-		[Test]
+		[Fact]
 		public void should_return_collection_with_new_item_appended()
 		{
-			var fixture = new Fixture();
-			IEnumerable<int> collection = fixture.CreateMany<int>(3);
+		    IEnumerable<int> collection = new[] { 1, 2, 3 };
 
-			int newItem = 555;
-			Assume.That(collection.Any(i => i == newItem), Is.False);
+            int newItem = 555;
+            collection.Should().NotContain(i => i == newItem);
 
 			int existingItem = collection.ElementAt(1);
 			var replacedCollection = collection.Replace(existingItem, newItem);
 			replacedCollection.Last().Should().Be(newItem);
 		}
 
-		[Test]
+		[Fact]
 		public void should_return_collection_with_new_item_in_correct_index_position()
 		{
-			var fixture = new Fixture();
-			IEnumerable<int> collection = fixture.CreateMany<int>(3);
+		    IEnumerable<int> collection = new[] { 1, 2, 3 };
 
-			int newItem = 555;
-			Assume.That(collection.Any(i => i == newItem), Is.False);
+            int newItem = 555;
+		    collection.Should().NotContain(i => i == newItem);
 
-			var index = 1;
+            var index = 1;
 			int existingItem = collection.ElementAt(index);
 			var replacedCollection = collection.Replace(existingItem, newItem, true);
 			replacedCollection.ElementAt(index).Should().Be(newItem);

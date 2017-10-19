@@ -2,11 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using FluentAssertions;
-using NUnit.Framework;
+using Xunit;
 
 namespace RuskinDantra.Extensions.UnitTests
 {
-	[TestFixture]
     public class type_extensions
     {
 		private class TempAttribute : Attribute
@@ -19,7 +18,7 @@ namespace RuskinDantra.Extensions.UnitTests
 
 		}
 
-		[Test]
+		[Fact]
 		public void should_return_attribute_if_class_is_decorated_with_it()
 		{
 			typeof (ClassWithAttribute).HasAttribute<SerializableAttribute>().Should().BeTrue();
@@ -29,35 +28,35 @@ namespace RuskinDantra.Extensions.UnitTests
 			typeof(ClassWithAttribute).GetAttribute<TempAttribute>().Should().BeNull();
 		}
 
-		[Test]
+		[Fact]
 	    public void has_interface_should_return_true_if_type_implements_interface()
 		{
 			var type = typeof (test_class);
 			type.HasInterface<itest_interface>().Should().BeTrue();
 		}
 
-		[Test]
+		[Fact]
 		public void has_interface_should_return_false_if_type_does_not_implement_interface()
 		{
 			var type = typeof(test_class_no_interface);
 			type.HasInterface<itest_interface>().Should().BeFalse();
 		}
 
-		[Test]
+		[Fact]
 		public void get_interface_should_not_return_null_if_interface_exists()
 		{
 			var type = typeof(test_class);
 			type.GetInterface<itest_interface>().Should().NotBeNull();
 		}
 
-		[Test]
+		[Fact]
 		public void get_interface_should_return_null_if_no_interface_exists()
 		{
 			var type = typeof(test_class_no_interface);
 			type.GetInterface<itest_interface>().Should().BeNull();
 		}
 
-		[Test]
+		[Fact]
 		public void get_base_types_should_return_empty_list_if_class_has_no_base_class()
 		{
 			var type = typeof(test_class_no_interface);
@@ -65,7 +64,7 @@ namespace RuskinDantra.Extensions.UnitTests
 			type.GetBaseTypes().ElementAt(0).Should().Be(typeof(object));
 		}
 
-		[Test]
+		[Fact]
 		public void get_base_types_should_return_empty_list_if_class_has_no_base_class_and_an_interface()
 		{
 			var type = typeof(test_class);
@@ -73,7 +72,7 @@ namespace RuskinDantra.Extensions.UnitTests
 			type.GetBaseTypes().ElementAt(0).Should().Be(typeof(object));
 		}
 
-		[Test]
+		[Fact]
 		public void get_base_types_should_return_list_of_base_classes_if_class_extends_base_class()
 		{
 			var type = typeof(test_class_extends);
@@ -81,7 +80,7 @@ namespace RuskinDantra.Extensions.UnitTests
 			type.GetBaseTypes().Where(t => t != typeof(object)).ElementAt(0).Should().Be(typeof(test_class_no_interface));
 		}
 
-		[Test]
+		[Fact]
 		public void get_base_types_should_return_list_of_base_classes_if_class_extends_base_class_which_extends_another_class()
 		{
 			var type = typeof(test_class_extends_again);
@@ -90,7 +89,7 @@ namespace RuskinDantra.Extensions.UnitTests
 			type.GetBaseTypes().Where(t => t != typeof(object)).Should().Contain(typeof(test_class_extends));
 		}
 
-		[Test]
+		[Fact]
 		public void all_implementors_should_return_all_type_which_implement_interface()
 		{
 			var allImplementors = typeof (itest_interface).AllImplementors();
@@ -100,14 +99,14 @@ namespace RuskinDantra.Extensions.UnitTests
 			allImplementors.Should().Contain(typeof(test_class3));
 		}
 
-		[Test]
+		[Fact]
 		public void all_implementors_should_throw_if_called_against_a_non_interface()
 		{
 			Action allImplementorsAction = () => typeof(test_class).AllImplementors();
 			allImplementorsAction.ShouldThrow<InvalidOperationException>().WithMessage("Type has to be an interface");
 		}
 
-		[Test]
+		[Fact]
 		public void should_return_correct_type_definition_for_generic_list()
 		{
 			var list = new List<string>();
@@ -115,7 +114,7 @@ namespace RuskinDantra.Extensions.UnitTests
 			genericTypes.Should().HaveCount(1);
 		}
 
-		[Test]
+		[Fact]
 		public void should_return_correct_type_definition_for_generic_class()
 		{
 			var genericClass = new generic_class<string>();
@@ -123,7 +122,7 @@ namespace RuskinDantra.Extensions.UnitTests
 			genericTypes.Should().HaveCount(1);
 		}
 
-		[Test]
+		[Fact]
 		public void should_return_null_type_definition_for_non_generic_class()
 		{
 			var str = "A";
