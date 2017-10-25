@@ -13,6 +13,8 @@ assembly_info:
 configuration: Release
 before_build: 
   - dotnet restore Extensions.sln
+test_script:
+  - dotnet test .\RuskinDantra.Extensions.UnitTests\RuskinDantra.Extensions.UnitTests.csproj
 after_build:
   - nuget pack RuskinDantra.Extensions\RuskinDantra.Extensions.nuspec -Version %appveyor_build_version%
   - appveyor PushArtifact RuskinDantra.Extensions.%appveyor_build_version%.nupkg

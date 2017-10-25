@@ -3,9 +3,14 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27004.2005
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RuskinDantra.Extensions", "RuskinDantra.Extensions\RuskinDantra.Extensions.csproj", "{8D2BD655-4BB9-4DFD-BBE1-8E824A876D74}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RuskinDantra.Extensions", "RuskinDantra.Extensions\RuskinDantra.Extensions.csproj", "{8D2BD655-4BB9-4DFD-BBE1-8E824A876D74}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RuskinDantra.Extensions.UnitTests", "RuskinDantra.Extensions.UnitTests\RuskinDantra.Extensions.UnitTests.csproj", "{0C900A12-225A-416F-AC1E-56FA0C1973FF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RuskinDantra.Extensions.UnitTests", "RuskinDantra.Extensions.UnitTests\RuskinDantra.Extensions.UnitTests.csproj", "{0C900A12-225A-416F-AC1E-56FA0C1973FF}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "build", "build", "{78693735-E2CB-4A7E-BB75-C4DA4609C7DE}"
+	ProjectSection(SolutionItems) = preProject
+		appveyor.yml = appveyor.yml
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
