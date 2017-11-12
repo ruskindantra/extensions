@@ -1,4 +1,5 @@
 using System;
+using System.Security;
 using FluentAssertions;
 using Xunit;
 
@@ -12,5 +13,13 @@ namespace RuskinDantra.Extensions.UnitTests
 			var stringWithNewLines = "A string with" + Environment.NewLine + " carriage return";
 			stringWithNewLines.Flatten().Should().Be("A string with carriage return");
 		}
+
+        [Fact]
+	    public void should_convert_to_secure_string()
+	    {
+	        var value = "ruskin.dantra";
+	        SecureString valueAsSecureString = value.ToSecureString();
+	        valueAsSecureString.Length.Should().Be(value.Length);
+	    }
 	}
 }
