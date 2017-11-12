@@ -1,4 +1,5 @@
 using System;
+using System.Security;
 
 namespace RuskinDantra.Extensions
 {
@@ -8,5 +9,15 @@ namespace RuskinDantra.Extensions
 		{
 			return str.Replace(Environment.NewLine, "").Replace('\t', '\0');
 		}
+
+	    public static SecureString ToSecureString(this string str)
+	    {
+	        SecureString secureString = new SecureString();
+	        foreach (var c in str)
+	        {
+	            secureString.AppendChar(c);
+	        }
+	        return secureString;
+	    }
 	}
 }

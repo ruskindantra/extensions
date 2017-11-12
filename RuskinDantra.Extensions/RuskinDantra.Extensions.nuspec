@@ -33,9 +33,11 @@
       --------
       20-10-17
       * Moved to .net standard
+      20-11-13
+      * Added secure string extensions
     </releaseNotes>
     <dependencies>
-      <dependency id="JetBrains.Annotations" version="11.0.0" />
+      <dependency id="JetBrains.Annotations" version="11.1.0" />
     </dependencies>
   </metadata>
   <files>
