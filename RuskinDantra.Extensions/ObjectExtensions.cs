@@ -91,5 +91,12 @@ namespace RuskinDantra.Extensions
 			if (!obj.HasValue)
 				throw new NullReferenceException(exceptionMessage);
 		}
-	}
+
+	    [ContractAnnotation("obj: null => halt")]
+        public static void ThrowIfArgumentNull<T>(this T obj, string paramName) where T : class
+	    {
+	        if ((object)obj == null)
+	            throw new ArgumentNullException(paramName);
+	    }
+    }
 }

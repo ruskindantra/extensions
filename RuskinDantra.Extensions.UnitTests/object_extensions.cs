@@ -230,6 +230,14 @@ namespace RuskinDantra.Extensions.UnitTests
 			throwIfNullAction.ShouldThrow<NullReferenceException>().WithMessage(customMessage);
 		}
 
+	    [Fact]
+	    public void null_object_should_throw_argument_null_reference_exception_with_param_name()
+	    {
+	        object nullObject = null;
+	        Action throwIfNullAction = () => nullObject.ThrowIfArgumentNull("someparameter");
+	        throwIfNullAction.ShouldThrow<ArgumentNullException>().WithMessage($"Value cannot be null.{Environment.NewLine}Parameter name: someparameter");
+	    }
+
         [Theory]
 		[InlineData("")]
 		[InlineData(null)]
