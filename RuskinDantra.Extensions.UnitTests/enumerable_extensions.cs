@@ -38,7 +38,7 @@ namespace RuskinDantra.Extensions.UnitTests
 		    collection.Should().NotContain(i => i == existingItemWhichShouldNotExist);
 
             var replacedCollection = collection.Replace(existingItemWhichShouldNotExist, newItem);
-			replacedCollection.Should().AllBeEquivalentTo(collection);
+			replacedCollection.Should().BeEquivalentTo(collection);
 		}
 
 		[Fact]
