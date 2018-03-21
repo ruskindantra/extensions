@@ -98,5 +98,17 @@ namespace RuskinDantra.Extensions
 	        if ((object)obj == null)
 	            throw new ArgumentNullException(paramName);
 	    }
+
+	    [ContractAnnotation("obj: null => halt")]
+	    public static void ThrowIfNullOrWhitespace(this string obj, string message = null)
+	    {
+	        string exceptionMessage = message;
+
+	        if (string.IsNullOrWhiteSpace(exceptionMessage))
+	            exceptionMessage = "String value cannot be null or empty";
+
+	        if (string.IsNullOrWhiteSpace(obj))
+	            throw new InvalidOperationException(exceptionMessage);
+	    }
     }
 }

@@ -33,8 +33,13 @@
       --------
       20-10-17
       * Moved to .net standard
-      20-11-13
+      --------
+      20-11-18
       * Added secure string extensions
+      --------
+      22-03-18
+      * Added string null or empty check
+      * Updated nuget dependencies
     </releaseNotes>
     <dependencies>
       <dependency id="JetBrains.Annotations" version="11.1.0" />
