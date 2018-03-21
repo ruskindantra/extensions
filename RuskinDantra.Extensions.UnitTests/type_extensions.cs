@@ -103,7 +103,7 @@ namespace RuskinDantra.Extensions.UnitTests
 		public void all_implementors_should_throw_if_called_against_a_non_interface()
 		{
 			Action allImplementorsAction = () => typeof(test_class).AllImplementors();
-			allImplementorsAction.ShouldThrow<InvalidOperationException>().WithMessage("Type has to be an interface");
+			allImplementorsAction.Should().Throw<InvalidOperationException>().WithMessage("Type has to be an interface");
 		}
 
 		[Fact]

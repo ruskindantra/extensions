@@ -13,7 +13,7 @@ namespace RuskinDantra.Extensions.UnitTests
         {
             List<string> collection = null;
             Action removeAllButAction = () => collection.RemoveAllButFirstXItems();
-            removeAllButAction.ShouldThrow<ArgumentNullException>();
+            removeAllButAction.Should().Throw<ArgumentNullException>();
         }
 
         [Fact]
@@ -21,7 +21,7 @@ namespace RuskinDantra.Extensions.UnitTests
         {
             var collection = new[] {"a", "b", "c", "d"};
             Action removeAllButAction = () => collection.RemoveAllButFirstXItems(collection.Count() + 1);
-            removeAllButAction.ShouldThrow<InvalidOperationException>();
+            removeAllButAction.Should().Throw<InvalidOperationException>();
         }
 
         [Theory]
@@ -30,7 +30,7 @@ namespace RuskinDantra.Extensions.UnitTests
         [InlineData(new[] {1, 2, 3, 4}, 4, new[] { 1, 2, 3, 4})]
         public void remove_all_but_first_x_items_should_remove_items_as_instructed(int[] original, int itemsToKeep, int[] expected)
         {
-            original.RemoveAllButFirstXItems(itemsToKeep).ShouldBeEquivalentTo(expected);
+            original.RemoveAllButFirstXItems(itemsToKeep).Should().BeEquivalentTo(expected);
         }
 
         [Theory]

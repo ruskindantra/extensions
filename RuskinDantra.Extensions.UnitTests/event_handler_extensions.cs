@@ -62,7 +62,7 @@ namespace RuskinDantra.Extensions.UnitTests
 		{
 			var eventClass = new event_class();
 			Action removeEventHandlerAction = () => eventClass.RemoveEventHandlers("noevent");
-			removeEventHandlerAction.ShouldThrow<InvalidOperationException>();
+			removeEventHandlerAction.Should().Throw<InvalidOperationException>();
 		}
 	}
 }

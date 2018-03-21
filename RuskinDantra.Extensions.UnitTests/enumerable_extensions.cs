@@ -14,7 +14,7 @@ namespace RuskinDantra.Extensions.UnitTests
 			IEnumerable<int> collection = null;
 
 			Action replaceAction = () => collection.Replace(1, 2);
-			replaceAction.ShouldThrow<ArgumentNullException>();
+			replaceAction.Should().Throw<ArgumentNullException>();
 		}
 
 		[Fact]
@@ -23,7 +23,7 @@ namespace RuskinDantra.Extensions.UnitTests
 			IEnumerable<int> collection = new int[0]{};
 
 			var replacedCollection = collection.Replace(1, 2);
-			replacedCollection.ShouldAllBeEquivalentTo(collection);
+			replacedCollection.Should().AllBeEquivalentTo(collection);
 		}
 
 		[Fact]
@@ -38,7 +38,7 @@ namespace RuskinDantra.Extensions.UnitTests
 		    collection.Should().NotContain(i => i == existingItemWhichShouldNotExist);
 
             var replacedCollection = collection.Replace(existingItemWhichShouldNotExist, newItem);
-			replacedCollection.ShouldAllBeEquivalentTo(collection);
+			replacedCollection.Should().AllBeEquivalentTo(collection);
 		}
 
 		[Fact]

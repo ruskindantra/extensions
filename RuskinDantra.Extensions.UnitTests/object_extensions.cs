@@ -212,7 +212,7 @@ namespace RuskinDantra.Extensions.UnitTests
 		{
 			object nullObject = null;
 			Action throwIfNullAction = () => nullObject.ThrowIfNull();
-			throwIfNullAction.ShouldThrow<NullReferenceException>().WithMessage("Item <System.Object> cannot be null");
+			throwIfNullAction.Should().Throw<NullReferenceException>().WithMessage("Item <System.Object> cannot be null");
 		}
 
         [Theory]
@@ -227,7 +227,7 @@ namespace RuskinDantra.Extensions.UnitTests
 
 			object nullObject = null;
 			Action throwIfNullAction = () => nullObject.ThrowIfNull(customMessage);
-			throwIfNullAction.ShouldThrow<NullReferenceException>().WithMessage(customMessage);
+			throwIfNullAction.Should().Throw<NullReferenceException>().WithMessage(customMessage);
 		}
 
 	    [Fact]
@@ -235,7 +235,7 @@ namespace RuskinDantra.Extensions.UnitTests
 	    {
 	        object nullObject = null;
 	        Action throwIfNullAction = () => nullObject.ThrowIfArgumentNull("someparameter");
-	        throwIfNullAction.ShouldThrow<ArgumentNullException>().WithMessage($"Value cannot be null.{Environment.NewLine}Parameter name: someparameter");
+	        throwIfNullAction.Should().Throw<ArgumentNullException>().WithMessage($"Value cannot be null.{Environment.NewLine}Parameter name: someparameter");
 	    }
 
         [Theory]
@@ -250,7 +250,7 @@ namespace RuskinDantra.Extensions.UnitTests
 
 			int? nullObject = null;
 			Action throwIfNullAction = () => nullObject.ThrowIfNull(customMessage);
-			throwIfNullAction.ShouldThrow<NullReferenceException>().WithMessage(customMessage);
+			throwIfNullAction.Should().Throw<NullReferenceException>().WithMessage(customMessage);
 		}
 
 		[Fact]
