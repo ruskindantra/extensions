@@ -31,7 +31,7 @@ namespace RuskinDantra.Extensions
 		/// <returns>True if the event exists otherwise false</returns>
 		public static bool RemoveEventHandlers<T>(this T obj, [NotNull] string eventName) where T : class
 		{
-			var type = typeof(T);
+			var type = obj.GetType();
 			var field = type.GetField(eventName, BindingFlags.NonPublic | BindingFlags.Instance);
 			
 			if (field == null)

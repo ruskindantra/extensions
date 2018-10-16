@@ -6,7 +6,14 @@ namespace RuskinDantra.Extensions.UnitTests
 {
 	public class event_handler_extensions
 	{
-		private class event_class
+		private interface i_event_class
+		{
+			event EventHandler SomeEvent;
+			event EventHandler SomeOtherEvent;
+			void Fire();
+		}
+		
+		private class event_class : i_event_class
 		{
 			public event EventHandler SomeEvent;
 
@@ -16,6 +23,17 @@ namespace RuskinDantra.Extensions.UnitTests
 			{
 				SomeEvent.Raise(this);
 			}
+		}
+
+		[Fact]
+		public void should_remove_single_event_handler_from_interface()
+		{
+			i_event_class eventClass = new event_class();
+			bool eventFired = false;
+			eventClass.SomeEvent += (sender, args) => eventFired = true;
+			eventClass.RemoveEventHandlers(nameof(i_event_class.SomeEvent)).Should().BeTrue();
+			eventClass.Fire();
+			eventFired.Should().BeFalse();
 		}
 
 		[Fact]
